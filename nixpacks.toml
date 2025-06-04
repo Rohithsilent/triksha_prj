@@ -1,14 +1,14 @@
 [phases.setup]
-nixPkgs = ["git", "git-lfs", "python312", "pip"]
+nixPkgs = ["git" "git-lfs" "python310"]
 
 [phases.install]
 cmds = [
   "git lfs install",
-  "rm -rf /app",  # Remove auto-copied non-git version
-  "git clone https://github.com/Rohithsilent/triksha_prj.git /app",
-  "cd /app && git lfs pull",
-  "cd /app && pip install -r requirements.txt"
+  "git lfs pull",
+  "python3.10 -m ensurepip",
+  "python3.10 -m pip install --upgrade pip",
+  "python3.10 -m pip install -r requirements.txt"
 ]
 
 [start]
-cmd = "gunicorn app:app"
+cmd = "python3.10 app.py"
