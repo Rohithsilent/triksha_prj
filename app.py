@@ -9,9 +9,14 @@ import speech_recognition as sr
 
 app = Flask(__name__)
 
-model_path = "keras_Model.keras"
-if not os.path.exists(model_path):
-    raise FileNotFoundError(f"Model file not found at {model_path}")
+model_path = "/app/keras_Model.keras"  # Absolute path
+
+print("Current working dir:", os.getcwd())
+print("Files in cwd:", os.listdir('.'))
+print("Files in /app:", os.listdir('/app'))
+print("Model path exists:", os.path.exists(model_path))
+print("Model file size (bytes):", os.path.getsize(model_path) if os.path.exists(model_path) else "File not found")
+
 model = tf.keras.models.load_model(model_path)
 print("Keras model loaded successfully.")
 
