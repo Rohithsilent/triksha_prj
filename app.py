@@ -56,6 +56,7 @@ def voice_to_text():
             else:
                 print(f"No image found for word: {word}")
 
+
         # Check for character-level GIFs in the alphabet directory
         for char in recognized_text:
             if char.isalnum():  # Only process alphanumeric characters
