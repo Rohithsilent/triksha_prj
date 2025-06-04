@@ -9,8 +9,10 @@ import speech_recognition as sr
 
 app = Flask(__name__)
 
-# Load the full TensorFlow model
-model = tf.keras.models.load_model("keras_Model.keras")
+model_path = "keras_Model.keras"
+if not os.path.exists(model_path):
+    raise FileNotFoundError(f"Model file not found at {model_path}")
+model = tf.keras.models.load_model(model_path)
 print("Keras model loaded successfully.")
 
 # Load the labels for sign representation
