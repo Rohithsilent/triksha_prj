@@ -1,10 +1,10 @@
 [phases.setup]
-nixPkgs = ["git" "git-lfs" "python310"]
+nixPkgs = ["git", "git-lfs", "python310"]
 
 [phases.install]
 cmds = [
   "git lfs install",
-  "git lfs pull",
+  "git lfs pull || true",  # avoid crashing if not a Git LFS repo
   "python3.10 -m ensurepip",
   "python3.10 -m pip install --upgrade pip",
   "python3.10 -m pip install -r requirements.txt"
