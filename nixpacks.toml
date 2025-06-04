@@ -1,18 +1,30 @@
 [phases.setup]
-nixPkgs = [
-  "python310",
-  "python310Packages.venv",
-  "python310Packages.pip",
-  "git",
-  "git-lfs"
+commands = [
+  "echo Setup phase - nothing special here"
 ]
 
 [phases.install]
-cmds = [
+commands = [
   "python3 -m venv /app/venv",
   ". /app/venv/bin/activate",
   "pip install --no-cache-dir -r requirements.txt"
 ]
 
-[start]
-cmd = ". /app/venv/bin/activate && python app.py"
+[phases.build]
+commands = [
+  "echo Build phase - add build commands here if any"
+]
+
+[phases.start]
+commands = [
+  ". /app/venv/bin/activate",
+  "python app.py"
+]
+
+[nix]
+packages = [
+  "python310",
+  "python310Packages.pip",
+  "git",
+  "git-lfs"
+]
