@@ -6,19 +6,32 @@ from pydub.playback import play
 import tempfile
 import os
 import speech_recognition as sr
+import gdown
 
 app = Flask(__name__)
 
-model_path = "/app/keras_Model.keras"  # Absolute path
+model_path = "keras_Model.keras"
+file_id = "1nDnwlRJHhSI2nMbl87P_0BKM4FdZQu8Q"
+gdrive_url = f"https://drive.google.com/uc?id={file_id}"
 
-print("Current working dir:", os.getcwd())
-print("Files in cwd:", os.listdir('.'))
-print("Files in /app:", os.listdir('/app'))
-print("Model path exists:", os.path.exists(model_path))
-print("Model file size (bytes):", os.path.getsize(model_path) if os.path.exists(model_path) else "File not found")
+if not os.path.exists(model_path):
+    print("🔽 Downloading Keras model from Google Drive...")
+    gdown.download(gdrive_url, 'keras_Model.keras', quiet=False, fuzzy=True)
+    print("✅ Model downloaded.")
 
+
+# Check if model file exists and print its size
+if os.path.exists(model_path):
+    size_bytes = os.path.getsize(model_path)
+    size_mb = size_bytes / (1024 * 1024)
+    print(f"📂 Model file path: {os.path.abspath(model_path)}")
+    print(f"📏 Model file size: {size_mb:.2f} MB")
+else:
+    print("❌ Model file not found after download!")
+
+# Load model
 model = tf.keras.models.load_model(model_path)
-print("Keras model loaded successfully.")
+print("✅ Keras model loaded successfully.")
 
 # Load the labels for sign representation
 labels_path = "labels.txt"
