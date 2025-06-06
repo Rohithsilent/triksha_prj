@@ -10,7 +10,7 @@ import gdown
 
 app = Flask(__name__)
 
-model_path = "/app/keras_Model.keras"
+model_path = "keras_Model.keras"
 file_id = "1srk0-D27nKcbNq17f82Bu4ILwP1G7LWg"
 gdrive_url = f"https://drive.google.com/uc?id={file_id}"
 
