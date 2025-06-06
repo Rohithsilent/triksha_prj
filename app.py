@@ -16,7 +16,7 @@ gdrive_url = f"https://drive.google.com/uc?id={file_id}"
 
 if not os.path.exists(model_path):
     print("🔽 Downloading Keras model from Google Drive...")
-    gdown.download(gdrive_url, model_path, quiet=False)
+    gdown.download(gdrive_url, 'keras_Model.keras', quiet=False, fuzzy=True)
     print("✅ Model downloaded.")
 
 # Check if model file exists and print its size
