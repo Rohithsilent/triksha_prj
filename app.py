@@ -19,6 +19,15 @@ if not os.path.exists(model_path):
     gdown.download(gdrive_url, model_path, quiet=False)
     print("✅ Model downloaded.")
 
+# Check if model file exists and print its size
+if os.path.exists(model_path):
+    size_bytes = os.path.getsize(model_path)
+    size_mb = size_bytes / (1024 * 1024)
+    print(f"📂 Model file path: {os.path.abspath(model_path)}")
+    print(f"📏 Model file size: {size_mb:.2f} MB")
+else:
+    print("❌ Model file not found after download!")
+
 # Load model
 model = tf.keras.models.load_model(model_path)
 print("✅ Keras model loaded successfully.")
