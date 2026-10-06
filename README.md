@@ -8,6 +8,7 @@ This Flask application provides a platform to bridge communication gaps by conve
 1. **Voice to Sign**: Convert spoken words into text and display corresponding signs.
 2. **Text to Voice**: Convert input text into voice playback.
 
+
 ---
 
 ## **Setup Instructions**
